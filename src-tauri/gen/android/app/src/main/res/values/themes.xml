@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.notepod" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- 半透明深色状态栏 + 浅色图标 → 在任何应用主题下都可见 -->
+        <item name="android:statusBarColor">#80000000</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

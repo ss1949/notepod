@@ -1,0 +1,6 @@
+{
+  "build": {
+    "devUrl": "https://tauri.localhost",
+    "frontendDist": "../dist"
+  }
+}

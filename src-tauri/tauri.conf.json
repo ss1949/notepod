@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicoverbruggen/tauri/dev/crates/tauri-cli/schema.json",
+  "productName": "NotePod",
+  "version": "1.0.0",
+  "identifier": "com.notepod.app",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://tauri.localhost",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "NotePod",
+        "width": 1100,
+        "height": 720,
+        "minWidth": 700,
+        "minHeight": 400,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [],
+    "android": {
+      "minSdkVersion": 24
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
+  }
+}

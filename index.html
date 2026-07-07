@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>NotePod</title>
+    <style>
+      html, body, #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: #f5f5f7;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        html, body, #root { background: #1c1c1e; }
+      }
+      #splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: inherit;
+        z-index: 99999;
+        transition: opacity 0.25s ease;
+      }
+      #splash.hidden { opacity: 0; pointer-events: none; }
+      .splash-spinner {
+        width: 28px;
+        height: 28px;
+        border: 2.5px solid rgba(128,128,128,0.2);
+        border-top-color: #007aff;
+        border-radius: 50%;
+        animation: splash-spin 0.8s linear infinite;
+      }
+      @keyframes splash-spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="splash"><div class="splash-spinner"></div></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // 捕获模块加载错误并显示在页面上
+      window.addEventListener('error', function(e) {
+        var msg = '[JS Error] ' + e.message + ' at ' + (e.filename||'?') + ':' + (e.lineno||'?');
+        console.error(msg);
+        // 显示错误到页面
+        var el = document.getElementById('splash-error');
+        if (!el) {
+          el = document.createElement('div');
+          el.id = 'splash-error';
+          el.style.cssText = 'position:fixed;bottom:20px;left:20px;right:20px;padding:12px;background:#fff3f3;border:1px solid #fcc;border-radius:8px;font-size:12px;color:#c00;z-index:100000;max-height:200px;overflow:auto;white-space:pre-wrap;word-break:break-all';
+          document.body.appendChild(el);
+        }
+        el.textContent += (el.textContent ? '\n' : '') + msg;
+      });
+      console.log("[HTML] inline script running");
+      window.addEventListener('DOMContentLoaded', function () {
+        console.log("[HTML] DOMContentLoaded");
+        const splash = document.getElementById('splash');
+        if (splash) {
+          const hide = function () {
+            splash.classList.add('hidden');
+            setTimeout(function () { splash.remove(); }, 300);
+          };
+          // 最多显示 3 秒，避免 React 初始化异常时一直卡住
+          setTimeout(hide, 3000);
+          // React 渲染完成后也会尝试隐藏
+          window.__hideSplash = hide;
+        }
+      });
+      // Android 状态栏主题跟随应用亮暗模式
+      (function detectTheme() {
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        function update() {
+          if (window.NotePodBridge) {
+            try { window.NotePodBridge.setStatusBarTheme(mq.matches); } catch(e) {}
+          }
+        }
+        update();
+        mq.addEventListener('change', update);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,349 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F5F5F7;
+  --color-bg-tertiary: #ebebeb;
+  --color-bg-sidebar: #F5F5F7;
+  --color-bg-sidebar-hover: rgba(0,0,0,0.04);
+  --color-bg-sidebar-active: rgba(0,122,255,0.10);
+  --color-bg-card-hover: #F9F9FB;
+  --color-bg-card-active: rgba(0,122,255,0.08);
+  --color-bg-input: #F0F0F2;
+  --color-bg-toolbar: #FAFAFA;
+  --color-bg-modal: rgba(0,0,0,0.35);
+  --color-bg-empty: #FAFAFA;
+  --color-text-primary: #1D1D1F;
+  --color-text-secondary: #6E6E73;
+  --color-text-muted: #AEAEB2;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #007AFF;
+  --color-accent-hover: #0056CC;
+  --color-danger: #FF3B30;
+  --color-danger-hover: #CC2F26;
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-border: rgba(0,0,0,0.08);
+  --color-border-strong: rgba(0,0,0,0.15);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+.dark {
+  --color-bg-primary: #1C1C1E;
+  --color-bg-secondary: #2C2C2E;
+  --color-bg-tertiary: #2d2d2d;
+  --color-bg-sidebar: #1C1C1E;
+  --color-bg-sidebar-hover: rgba(255,255,255,0.06);
+  --color-bg-sidebar-active: rgba(10,132,255,0.20);
+  --color-bg-card-hover: #3A3A3C;
+  --color-bg-card-active: rgba(10,132,255,0.18);
+  --color-bg-input: #3A3A3C;
+  --color-bg-toolbar: #2C2C2E;
+  --color-bg-modal: rgba(0,0,0,0.55);
+  --color-bg-empty: #1C1C1E;
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: #98989D;
+  --color-text-muted: #636366;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #0A84FF;
+  --color-accent-hover: #409CFF;
+  --color-danger: #FF453A;
+  --color-danger-hover: #FF6961;
+  --color-success: #30D158;
+  --color-warning: #FF9F0A;
+  --color-border: rgba(255,255,255,0.08);
+  --color-border-strong: rgba(255,255,255,0.16);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Display",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Apple 风格收缩面板过渡动画 */
+.collapsible-transition {
+  transition: width 220ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              min-width 220ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              opacity 180ms ease;
+}
+
+/* 编辑器 CodeMirror 样式（保留兼容） */
+.cm-editor {
+  height: 100%;
+  font-size: 15px;
+}
+.cm-editor .cm-scroller {
+  font-family: "SF Mono", "Fira Code", "JetBrains Mono", "Consolas", monospace;
+}
+
+/* 自定义 checkbox */
+.custom-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.custom-checkbox:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.custom-checkbox:checked::after {
+  content: "✓";
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+/* === Markdown Preview Styles === */
+.markdown-preview h1 { font-size: 24px; font-weight: 700; margin: 16px 0 8px; }
+.markdown-preview h2 { font-size: 20px; font-weight: 700; margin: 14px 0 6px; }
+.markdown-preview h3 { font-size: 17px; font-weight: 600; margin: 12px 0 4px; }
+.markdown-preview p { margin: 4px 0; }
+.markdown-preview ul, .markdown-preview ol { padding-left: 24px; margin: 6px 0; }
+.markdown-preview li { margin: 2px 0; }
+.markdown-preview blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 16px;
+  margin: 8px 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+.markdown-preview pre {
+  background: var(--color-bg-input);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 13px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+.markdown-preview code {
+  background: var(--color-bg-input);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 13px;
+}
+.markdown-preview pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--color-text-primary);
+}
+.markdown-preview a { color: var(--color-accent); text-decoration: underline; }
+.markdown-preview img { max-width: 100%; border-radius: var(--radius-sm); }
+.markdown-preview hr { border: none; border-top: 1px solid var(--color-border); margin: 16px 0; }
+.markdown-preview table { border-collapse: collapse; margin: 8px 0; width: 100%; }
+.markdown-preview th, .markdown-preview td {
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.markdown-preview th {
+  background: var(--color-bg-input);
+  font-weight: 600;
+}
+.markdown-preview strong { font-weight: 700; }
+.markdown-preview del { text-decoration: line-through; color: var(--color-text-muted); }
+
+/* === LaTeX / KaTeX Styles === */
+.markdown-preview .katex-block {
+  display: block;
+  text-align: center;
+  padding: 16px 0;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+.markdown-preview .katex-error {
+  color: var(--color-danger);
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 13px;
+  background: rgba(255, 59, 48, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+/* KaTeX 整体适配深色模式 */
+.markdown-preview .katex {
+  font-size: 1.1em;
+}
+.dark .markdown-preview .katex {
+  color: var(--color-text-primary);
+}
+
+/* === 双链 Wiki Link Styles === */
+.wiki-link {
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin: 0 1px;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+  font-weight: 500;
+}
+.wiki-link--exists {
+  color: var(--color-accent);
+  background: rgba(0, 122, 255, 0.10);
+}
+.wiki-link--exists:hover {
+  background: rgba(0, 122, 255, 0.22);
+}
+.wiki-link--missing {
+  color: var(--color-text-muted);
+  background: rgba(128, 128, 128, 0.15);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.wiki-link--missing:hover {
+  background: rgba(128, 128, 128, 0.30);
+  color: var(--color-text-secondary);
+}
+
+/* === Logseq 风格任务标记 === */
+.task-marker {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-right: 6px;
+  user-select: none;
+  vertical-align: middle;
+}
+.task-marker-todo { background: rgba(142, 142, 147, 0.15); color: #8E8E93; }
+.task-marker-doing { background: rgba(0, 122, 255, 0.15); color: #007AFF; }
+.task-marker-done { background: rgba(52, 199, 89, 0.15); color: #34C759; }
+.task-marker-later { background: rgba(255, 149, 0, 0.15); color: #FF9500; }
+.task-marker-now { background: rgba(255, 59, 48, 0.15); color: #FF3B30; }
+.task-marker-waiting { background: rgba(255, 204, 0, 0.15); color: #B8860B; }
+.task-marker-cancelled { background: rgba(142, 142, 147, 0.15); color: #8E8E93; text-decoration: line-through; }
+
+/* DONE / CANCELLED 状态仅对内容删除线，不影响时间标签 */
+.markdown-preview li:has(> .task-marker-done) .task-content,
+.markdown-preview li:has(> .task-marker-cancelled) .task-content {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+.markdown-preview li:has(> .task-marker-done) > .task-marker-done,
+.markdown-preview li:has(> .task-marker-cancelled) > .task-marker-cancelled {
+  text-decoration: none;
+}
+
+/* Logseq 风格任务时间/耗时标签 */
+.task-content {
+  transition: color 150ms ease;
+}
+.task-prop {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--color-bg-input);
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none !important;
+  user-select: none;
+  vertical-align: middle;
+}
+.task-prop-label {
+  opacity: 0.7;
+  margin-right: 3px;
+  font-weight: 400;
+}
+.task-prop-doing {
+  background: rgba(0, 122, 255, 0.12);
+  color: #007AFF;
+}
+.task-prop-done {
+  background: rgba(52, 199, 89, 0.12);
+  color: #34C759;
+}
+
+/* === Mobile Safe Area === */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 28px);
+  position: relative;
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+
+/* === Mobile Drawer Animation === */
+.drawer-backdrop {
+  animation: fadeIn 200ms ease forwards;
+}
+
+/* === Mobile Overscroll Prevention === */
+@media (max-width: 767px) {
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* 禁止双击缩放，提升触摸响应 */
+  * {
+    touch-action: manipulation;
+  }
+  /* 移动端：笔记/日志/回收站列表的删除按钮始终可见 */
+  .note-list-item .delete-btn,
+  .daily-journal-item .delete-btn {
+    display: flex !important;
+    opacity: 1 !important;
+    color: var(--color-danger) !important;
+  }
+}
