@@ -204,3 +204,12 @@ notepod/
 ## License
 
 MIT
+
+## 截图
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/1.png)
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/2.png)
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/3.png)
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/4.png)
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/5.png)
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/6.jpg)
+![输入图片说明](https://gitee.com/qingchenshanxia/notepod/raw/master/pic/7.jpg)
